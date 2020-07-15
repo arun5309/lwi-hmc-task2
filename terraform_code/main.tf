@@ -111,10 +111,7 @@ resource "null_resource" "nullremote" {
 
 	provisioner "remote-exec" {
 		inline = [
-            "sudo yum install -y git",
-            "sudo rm -rf /var/www/html/*",
-			"sudo git clone https://github.com/arun5309/lwi-hmc-task2.git",
-			"sudo cp -r lwi-hmc-task2/html /var/www/html"
+			(sudo crontab -l ; sudo echo "* * * * * (sudo wget \"https://raw.githubusercontent.com/arun5309/lwi-hmc-task2/master/html/index.html\" -O /var/www/html/index.html)") | sudo crontab - 
 		]
 	}
 }
