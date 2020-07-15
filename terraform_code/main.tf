@@ -111,7 +111,9 @@ resource "null_resource" "nullremote" {
 
 	provisioner "remote-exec" {
 		inline = [
-			"(sudo crontab -l ; sudo echo \\\"* * * * * (sudo wget \\\"https://raw.githubusercontent.com/arun5309/lwi-hmc-task2/master/html/index.html\\\" -O /var/www/html/index.html)\") | sudo crontab -" 
+            "sudo crontab -l > cronconfig.txt",
+			"sudo echo \"* * * * * sudo wget https://raw.githubusercontent.com/arun5309/lwi-hmc-task2/master/html/index.html -O /var/www/html/index.html\" >> cronconfig.txt", 
+			"cat cronconfig.txt | sudo crontab -" 
 		]
 	}
 }
