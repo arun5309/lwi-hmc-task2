@@ -1,4 +1,4 @@
-task1_keypair*
+task2_keypair*
 *.tfstate
 *.backup
 .terraform
